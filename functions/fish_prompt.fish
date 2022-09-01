@@ -34,8 +34,7 @@ function fish_prompt
   if test $VIRTUAL_ENV
       printf "(%s) " (set_color blue)(basename $VIRTUAL_ENV)(set_color normal)
   end
-set -l UID (id -u $USER)
-  if [ "$UID" = "0" ]
+  if [ fish_is_root_user = "0" ]
   set_color red  
   printf '↪  '
   else

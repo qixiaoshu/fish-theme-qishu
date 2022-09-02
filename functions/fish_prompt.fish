@@ -24,16 +24,17 @@ function fish_prompt
   printf ' in '
 
   set_color $fish_color_cwd
-  printf '%s ' (pwd)
-  set_color blue
-  printf '%s' (tbytes)
-  set_color normal
+  printf '%s ' (prompt_pwd)
+  set_color 00b7c3
+  printf '[%s]' (tbytes)
+  set_color 66ccff
   printf '%s' (__fish_git_prompt)
   # Line 2
   echo
   if test $VIRTUAL_ENV
-      printf "(%s) " (set_color blue)(basename $VIRTUAL_ENV)(set_color normal)
+      printf "(%s) " (set_color blue)(basename $VIRTUAL_ENV)(set_color e3b4b8)
   end
+
   if [ fish_is_root_user = "0" ]
   set_color red  
   printf '↪  '

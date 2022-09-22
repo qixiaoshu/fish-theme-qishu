@@ -18,6 +18,9 @@ end
 end
 
 
+
+
+
 function fish_greeting -d "hello,world"
 set_color yellow
 date '+Today is %F %A'

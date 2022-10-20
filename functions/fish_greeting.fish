@@ -17,13 +17,21 @@ else
 end
 end
 
-
-
-
-
-function fish_greeting -d "hello,world"
-set_color yellow
-date '+Today is %F %A'
-date '+It is the %jth day and %Wth week of this year.'
-holiday
+function runnian -d "ruannian"
+set -l year (date '+%Y')
+set -l day (date '+%j')
+set -l run (math 366-$day)
+set -l ping (math 365-$day)
+set_color 00b7c3
+if test $year%4=0 -a $year%100!=0 -o $year%400=0
+	echo {$run} days left this year.
+else 
+	echo {$ping} days left this year.
 end
+end
+
+set_color yellow
+date '+Today is %F %A.'
+date '+It is the %jth day and %Wth week of this year.'
+runnian
+holiday

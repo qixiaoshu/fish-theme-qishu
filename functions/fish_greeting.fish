@@ -1,13 +1,13 @@
 #welcome
 function money -d "payroll"
-    set -l pd (math (date +%d)\*1)
+    set -f pd (math (date +%d)\*1)
     if test $pd -le 5
-        set rq (math (date +%Y)\*10000+(date +%m)\*100+5)
+        set -f rq (math (date +%Y)\*10000+(date +%m)\*100+5)
     else
-        set rq  (math (date +%Y)\*10000+(date +%m)\*100+105)
+        set -f rq  (math (date +%Y)\*10000+(date +%m)\*100+105)
     end
-    set -l temp (math (date -d "$rq 1500" +%s)/86400-(date +%s)/86400)
-    set -l xq (date -d "$rq" +%u)
+    set -f temp (math (date -d "$rq 1500" +%s)/86400-(date +%s)/86400)
+    set -f xq (date -d "$rq" +%u)
     if test $xq=6
     set final (math -s1 $temp+2)
     else if test $xq=7
@@ -24,7 +24,7 @@ end
 
 
 function holiday -d "weekend"
-set -l wday (math 5-(date +%u))
+set -f wday (math 5-(date +%u))
 set_color 00b7c3
 if test $wday -ge 0
     echo The weekend is $wday day away.
@@ -34,8 +34,8 @@ end
 end
 
 function runnian -d "ruannian"
-set -l ny (math (date +%Y)\*10000+10101)
-set -l temp (math -s0 (date -d "$ny" +%s)/86400-(date +%s)/86400+1)
+set -f ny (math (date +%Y)\*10000+10101)
+set -f temp (math -s0 (date -d "$ny" +%s)/86400-(date +%s)/86400+1)
 
 set_color 00b7c3
 if test $temp -eq 1

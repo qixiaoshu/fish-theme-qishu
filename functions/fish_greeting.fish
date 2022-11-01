@@ -1,21 +1,29 @@
 #welcome
-function money -d "payroll" 
-set -l nyr (math (date +%Y)\*10000+(date +%m)\*100+105) 
-set -l temp (math (date -d "$nyr 1500" +%s)/86400-(date +%s)/86400)
-set -l xq (date -d "$nyr" +%u)
-if test $xq=6
+function money -d "payroll"
+    set -l pd (math (date +%d)\*1)
+    set -l yr (math (date +%Y)\*10000+(date +%m)\*100+5)
+    set -l nyr (math (date +%Y)\*10000+(date +%m)\*100+105)
+    if test $pd -le 5
+        set rq $yr
+    else
+        set rq $nyr
+    end
+    set -l temp (math (date -d "$rq 1500" +%s)/86400-(date +%s)/86400)
+    set -l xq (date -d "$rq" +%u)
+    if test $xq=6
     set final (math -s1 $temp+2)
-else if test $xq=7
+    else if test $xq=7
     set final (math -s1 $temp+1)
-else 
+    else
     set final (math -s1 $temp)
-end
-if test $final=1
+    end
+    if test $final=1
     echo $final day away from payroll.
-else
-    echo $final days away from payroll. 
+    else
+    echo $final days away from payroll.
+    end
 end
-end
+
 
 function holiday -d "weekend"
 set -l wday (math 5-(date +%u))
